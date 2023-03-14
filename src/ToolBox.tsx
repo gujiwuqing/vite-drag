@@ -4,6 +4,7 @@ import BusinessRadioEdit from "./components/business/BusinessRadio/BusinessRadio
 import CarouselEdit from "./components/business/Carousel/CarouselEdit";
 import { useAtom } from "jotai";
 import { activeItemIdAtom, listAtom } from "./model/global";
+import BusinessSearchEdit from './components/business/BusinessSearch/BusinessSearchEdit';
 const ToolBox = () => {
   const [activeItemId] = useAtom(activeItemIdAtom);
   const [list] = useAtom(listAtom);
@@ -20,6 +21,9 @@ const ToolBox = () => {
         break;
       case "carousel":
         jsx = <CarouselEdit key={item.id} {...item} />;
+        break;
+        case "search":
+        jsx = <BusinessSearchEdit key={item.id} {...item} />;
         break;
       default:
         jsx = null;

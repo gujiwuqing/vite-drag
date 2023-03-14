@@ -26,6 +26,10 @@ const Panel = () => {
       title: "走马灯",
       type: "carousel",
       icon: "iconzoumadeng",
+    }, {
+      title: "搜索框",
+      type: "search",
+      icon: "iconzoumadeng",
     },
   ];
 
@@ -72,6 +76,17 @@ const Panel = () => {
           value: "",
           placeholder: "请输入内容",
           title: "标题",
+        },
+      ]);
+    }else if (type == "search") {
+      setList([
+        ...list,
+        {
+          id: uuidv4(),
+          type: "search",
+          value: "",
+          placeholder: "请输入内容",
+          title: "搜索框",
         },
       ]);
     }

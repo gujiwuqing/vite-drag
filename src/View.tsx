@@ -7,6 +7,7 @@ import BusinessInputView from "./components/business/BusinessInput/BusinessInput
 import BusinessRadioView from "./components/business/BusinessRadio/BusinessRadioView";
 import CarouselView from "./components/business/Carousel/CarouselView";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import BusinessSearchView from './components/business/BusinessSearch/BusinessSearchView';
 
 const View = () => {
   const [list, setList] = useAtom(listAtom);
@@ -37,6 +38,11 @@ const View = () => {
         return (
           <DragableItemView {...commonProps}>
             <CarouselView {...item} />
+          </DragableItemView>
+        );case "search":
+        return (
+          <DragableItemView {...commonProps}>
+            <BusinessSearchView {...item} />
           </DragableItemView>
         );
       case "checkbox":
