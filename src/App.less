@@ -1,34 +1,39 @@
-.App{
+.App {
   display: flex;
   min-height: 100vh;
   width: 100vw;
 }
 
-.panel{
+.panel {
   width: 300px;
 }
-.tool{
+.tool {
   width: 400px;
 }
-.view{
-  flex:1;
+.view {
+  flex: 1;
   background-color: #fff;
   min-height: 100vh;
+  padding: 20px;
 }
 
-.panel-item{
+.panel-item {
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &:hover {
+    background-color: #555;
+    cursor: pointer;
+  }
+  div {
+    margin-bottom: 20px;
+  }
 }
 
-.panel-item:hover{
-  background-color: #555;
-  cursor: pointer;
-}
-
-.panel-item div{
-  margin-bottom: 20px;
+.drag-item{
+ &-active{
+  border: 1px solid red;
+ }
 }

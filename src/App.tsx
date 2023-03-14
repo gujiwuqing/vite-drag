@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import View from './View';
-import Tool from './Tool';
-import Panel from './Panel';
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import View from "./View";
+import ToolBox from "./ToolBox";
+import Panel from "./Panel";
+import "./App.less";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <Panel/>
-      <View/>
-      <Tool/>
+      <Panel />
+      <View />
+      <ToolBox />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

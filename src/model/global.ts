@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atom } from "jotai";
 
-const listAtom = atom([])
-const currentItemAtom=atom('')
+export const listAtom = atom([]);
+export const activeItemIdAtom = atom("");
