@@ -6,7 +6,6 @@ import "./App.less";
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-
   // change background colour if dragging
   //   background: isDragging ? "lightgreen" : "grey",
 
@@ -27,14 +26,14 @@ export default function DragableItemView({ id, index, children, isActive }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={isActive ? "drag-item-active" : ""}
+          className={isActive ? "drag-item-active" : "drag-item"}
           style={getItemStyle(
             snapshot.isDragging,
             provided.draggableProps.style
           )}
           onClick={handleClick}
         >
-          {children}
+          <div style={{ "pointer-events": "none" }}>{children}</div>
         </div>
       )}
     </Draggable>

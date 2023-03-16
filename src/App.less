@@ -5,10 +5,15 @@
 }
 
 .panel {
-  width: 300px;
+  width: 200px;
 }
 .tool {
-  width: 400px;
+  width: 500px;
+}
+@media (min-width: 1440px) and (max-width: 1960px) {
+  .tool {
+    width: 800px;
+  }
 }
 .view {
   flex: 1;
@@ -32,8 +37,10 @@
   }
 }
 
-.drag-item{
- &-active{
-  border: 1px solid red;
- }
+.drag-item {
+  padding: 20px;
+  &-active {
+    padding: 20px;
+    border: 1px solid red;
+  }
 }

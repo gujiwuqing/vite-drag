@@ -9,4 +9,8 @@ export default defineConfig({
       less: {},
     },
   },
+  server: {
+    port: 9999,
+    open: true,
+  },
 });

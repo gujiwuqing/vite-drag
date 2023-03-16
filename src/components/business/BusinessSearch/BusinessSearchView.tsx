@@ -1,28 +1,29 @@
-import React from 'react';
-import { AudioOutlined } from '@ant-design/icons';
-import { Input, Space } from 'antd';
+import { Input } from "antd";
+import React, { ReactNode } from "react";
 
 const { Search } = Input;
 
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
-
 const onSearch = (value: string) => console.log(value);
 
-const App: React.FC = () => (
+interface BusinessSearchViewProps {
+  addonAfter?: ReactNode;
+  addonBefore?: ReactNode;
+  placeholder?: string;
+  allowClear?: boolean | { clearIcon: ReactNode };
+}
+const BusinessSearchView: React.FC = ({
+  allowClear = false,
+  addonAfter = "",
+  addonBefore = "",
+  placeholder = "请输入",
+}: BusinessSearchViewProps) => (
   <Search
-    addonBefore="https://"
-    placeholder="input search text"
-    allowClear
+    addonAfter={addonAfter}
+    addonBefore={addonBefore}
+    placeholder={placeholder}
+    allowClear={allowClear}
     onSearch={onSearch}
-    style={{ width: 304 }}
   />
 );
 
-export default App;
+export default BusinessSearchView;

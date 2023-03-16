@@ -1,13 +1,13 @@
-import React from "react";
+import { Checkbox } from "antd";
 import { useAtom } from "jotai";
-import { listAtom, activeItemIdAtom } from "./model/global";
-import { Input, Radio, Checkbox } from "antd";
-import DragableItemView from "./DragableItemView";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import BusinessInputView from "./components/business/BusinessInput/BusinessInputView";
 import BusinessRadioView from "./components/business/BusinessRadio/BusinessRadioView";
+import BusinessRichView from "./components/business/BusinessRich/BusinessRichView";
+import BusinessSearchView from "./components/business/BusinessSearch/BusinessSearchView";
 import CarouselView from "./components/business/Carousel/CarouselView";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import BusinessSearchView from './components/business/BusinessSearch/BusinessSearchView';
+import DragableItemView from "./DragableItemView";
+import { activeItemIdAtom, listAtom } from "./model/global";
 
 const View = () => {
   const [list, setList] = useAtom(listAtom);
@@ -39,10 +39,17 @@ const View = () => {
           <DragableItemView {...commonProps}>
             <CarouselView {...item} />
           </DragableItemView>
-        );case "search":
+        );
+      case "search":
         return (
           <DragableItemView {...commonProps}>
             <BusinessSearchView {...item} />
+          </DragableItemView>
+        );
+      case "rich":
+        return (
+          <DragableItemView {...commonProps}>
+            <BusinessRichView {...item} />
           </DragableItemView>
         );
       case "checkbox":

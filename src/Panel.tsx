@@ -26,9 +26,15 @@ const Panel = () => {
       title: "走马灯",
       type: "carousel",
       icon: "iconzoumadeng",
-    }, {
+    },
+    {
       title: "搜索框",
       type: "search",
+      icon: "iconzoumadeng",
+    },
+    {
+      title: "富文本",
+      type: "rich",
       icon: "iconzoumadeng",
     },
   ];
@@ -39,7 +45,7 @@ const Panel = () => {
         ...list,
         {
           id: uuidv4(),
-          type: "input",
+          type,
           value: "",
           placeholder: "请输入内容",
           title: "标题",
@@ -50,7 +56,7 @@ const Panel = () => {
         ...list,
         {
           id: uuidv4(),
-          type: "radio",
+          type,
           value: "",
           placeholder: "请输入内容",
           title: "标题",
@@ -61,7 +67,7 @@ const Panel = () => {
         ...list,
         {
           id: uuidv4(),
-          type: "checkbox",
+          type,
           value: "",
           placeholder: "请输入内容",
           title: "标题",
@@ -72,18 +78,29 @@ const Panel = () => {
         ...list,
         {
           id: uuidv4(),
-          type: "carousel",
+          type,
           value: "",
           placeholder: "请输入内容",
           title: "标题",
         },
       ]);
-    }else if (type == "search") {
+    } else if (type == "search") {
       setList([
         ...list,
         {
           id: uuidv4(),
-          type: "search",
+          type,
+          value: "",
+          placeholder: "请输入内容",
+          title: "搜索框",
+        },
+      ]);
+    } else if (type == "rich") {
+      setList([
+        ...list,
+        {
+          id: uuidv4(),
+          type,
           value: "",
           placeholder: "请输入内容",
           title: "搜索框",

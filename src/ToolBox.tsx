@@ -1,10 +1,10 @@
-import React from "react";
+import { useAtom } from "jotai";
 import BusinessInputEdit from "./components/business/BusinessInput/BusinessInputEdit";
 import BusinessRadioEdit from "./components/business/BusinessRadio/BusinessRadioEdit";
+import BusinessRichEdit from "./components/business/BusinessRich/BusinessRichEdit";
+import BusinessSearchEdit from "./components/business/BusinessSearch/BusinessSearchEdit";
 import CarouselEdit from "./components/business/Carousel/CarouselEdit";
-import { useAtom } from "jotai";
 import { activeItemIdAtom, listAtom } from "./model/global";
-import BusinessSearchEdit from './components/business/BusinessSearch/BusinessSearchEdit';
 const ToolBox = () => {
   const [activeItemId] = useAtom(activeItemIdAtom);
   const [list] = useAtom(listAtom);
@@ -22,8 +22,11 @@ const ToolBox = () => {
       case "carousel":
         jsx = <CarouselEdit key={item.id} {...item} />;
         break;
-        case "search":
+      case "search":
         jsx = <BusinessSearchEdit key={item.id} {...item} />;
+        break;
+      case "rich":
+        jsx = <BusinessRichEdit key={item.id} {...item} />;
         break;
       default:
         jsx = null;
