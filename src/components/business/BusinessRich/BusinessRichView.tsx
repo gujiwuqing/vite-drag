@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import MdEditor from "md-editor-rt";
 
-export default function BusinessRichView() {
-  const [text, setText] = useState("hello md-editor-rt！");
-  return <MdEditor modelValue={text} onChange={setText} previewOnly={true} />;
+export default function BusinessRichView(props) {
+  const { value, id } = props;
+  return (
+    <MdEditor
+      modelValue={value}
+      previewOnly={true}
+      onHtmlChanged={(value) => {
+        console.log("value", value);
+      }}
+    />
+  );
 }

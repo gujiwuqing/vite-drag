@@ -4,43 +4,61 @@ import Svg from "./components/common/Svg";
 import { listAtom } from "./model/global";
 import { useAtom } from "jotai";
 import { v4 as uuidv4 } from "uuid";
+import noticeIcon from "./assets/FlcvwSqlns7YVxDk8Zi2yAG6oEji.png";
+import titleIcon from "./assets/FloUI22mSkzU6U70Ayuvf3hayCwH.png";
+import carouselIcon from "./assets/Fgyd5N9R29QGAJXE7daGUWFpdv5z.png";
+import searchIcon from "./assets/FsW9Sbp2UH3-1suib4UB-RwyaR3y.png";
+import elevatorNavigationIcon from "./assets/Fpy_YxZ69hGiYl-SUDkDn7Sz2sNH.png";
+import imageTextNavIcon from "./assets/FnCMmkIRcBPKq5oeY8kX7lq_7hk4.png";
+import goodsIcon from "./assets/FirnSShEAotLWTHOsk21GdYa-SdX.png";
+import richTextIcon from "./assets/FloUI22mSkzU6U70Ayuvf3hayCwH.png";
 const Panel = () => {
   const [list, setList] = useAtom(listAtom);
   const panelList = [
     {
-      title: "输入框",
-      type: "input",
-      icon: "iconwenben",
+      type: "title",
+      icon: titleIcon,
+      text: "标题文本",
     },
     {
-      title: "单选框",
-      type: "radio",
-      icon: "iconradio-checked",
+      type: "elevator_navigation",
+      icon: elevatorNavigationIcon,
+      text: "电梯导航",
     },
     {
-      title: "复选框",
-      type: "checkbox",
-      icon: "icondanxuankuang",
+      type: "goods",
+      icon: goodsIcon,
+      text: "商品",
     },
     {
-      title: "走马灯",
       type: "carousel",
-      icon: "iconzoumadeng",
+      icon: carouselIcon,
+      text: "图文广告",
     },
     {
-      title: "搜索框",
+      type: "image_text_nav",
+      icon: imageTextNavIcon,
+      text: "图文导航",
+    },
+    {
+      type: "rich_text",
+      icon: richTextIcon,
+      text: "富文本",
+    },
+    {
       type: "search",
-      icon: "iconzoumadeng",
+      icon: searchIcon,
+      text: "商品搜索",
     },
     {
-      title: "富文本",
-      type: "rich",
-      icon: "iconzoumadeng",
+      type: "notice",
+      icon: noticeIcon,
+      text: "公告",
     },
   ];
 
   const handleAddItem = (type: string) => {
-    if (type == "input") {
+     if (type == "carousel") {
       setList([
         ...list,
         {
@@ -51,7 +69,7 @@ const Panel = () => {
           title: "标题",
         },
       ]);
-    } else if (type == "radio") {
+    } else if (type == "rich_text") {
       setList([
         ...list,
         {
@@ -59,10 +77,10 @@ const Panel = () => {
           type,
           value: "",
           placeholder: "请输入内容",
-          title: "标题",
+          title: "搜索框",
         },
       ]);
-    } else if (type == "checkbox") {
+    } else if (type == "notice") {
       setList([
         ...list,
         {
@@ -70,10 +88,12 @@ const Panel = () => {
           type,
           value: "",
           placeholder: "请输入内容",
-          title: "标题",
+          title: "搜索框",
+          mode: "",
+          color: "#f60",
         },
       ]);
-    } else if (type == "carousel") {
+    } else if (type == "image_text_nav") {
       setList([
         ...list,
         {
@@ -81,7 +101,18 @@ const Panel = () => {
           type,
           value: "",
           placeholder: "请输入内容",
-          title: "标题",
+          title: "搜索框",
+        },
+      ]);
+    } else if (type == "elevator_navigation") {
+      setList([
+        ...list,
+        {
+          id: uuidv4(),
+          type,
+          value: "",
+          placeholder: "请输入内容",
+          title: "搜索框",
         },
       ]);
     } else if (type == "search") {
@@ -95,21 +126,10 @@ const Panel = () => {
           title: "搜索框",
         },
       ]);
-    } else if (type == "rich") {
-      setList([
-        ...list,
-        {
-          id: uuidv4(),
-          type,
-          value: "",
-          placeholder: "请输入内容",
-          title: "搜索框",
-        },
-      ]);
     }
   };
   return (
-    <div className="panel">
+    <div className="com">
       <h1>组件</h1>
       <Row>
         {panelList.map((item) => {
@@ -117,13 +137,16 @@ const Panel = () => {
             <Col
               span={12}
               key={item.type}
-              className="panel-item"
+              className="com-item"
               onClick={() => {
                 handleAddItem(item.type);
               }}
             >
-              <div>{item.title}</div>
-              <Svg type={item.icon} style={{ fontSize: 18 }} />
+              <i
+                className="com-item__icon"
+                style={{ backgroundImage: `url(${item.icon})` }}
+              ></i>
+              <div>{item.text}</div>
             </Col>
           );
         })}

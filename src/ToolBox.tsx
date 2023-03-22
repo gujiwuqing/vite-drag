@@ -1,10 +1,11 @@
 import { useAtom } from "jotai";
-import BusinessInputEdit from "./components/business/BusinessInput/BusinessInputEdit";
-import BusinessRadioEdit from "./components/business/BusinessRadio/BusinessRadioEdit";
 import BusinessRichEdit from "./components/business/BusinessRich/BusinessRichEdit";
-import BusinessSearchEdit from "./components/business/BusinessSearch/BusinessSearchEdit";
+import SearchEdit from "./components/business/Search/SearchEdit";
 import CarouselEdit from "./components/business/Carousel/CarouselEdit";
 import { activeItemIdAtom, listAtom } from "./model/global";
+import BusinessNoticeEdit from "./components/business/BusinessNotice/BusinessNoticeEdit";
+import ImageTextNavEdit from "./components/business/ImageTextNav/ImageTextNavEdit";
+import ElevatorNavigationEdit from "./components/business/ElevatorNavigation/ElevatorNavigationEdit";
 const ToolBox = () => {
   const [activeItemId] = useAtom(activeItemIdAtom);
   const [list] = useAtom(listAtom);
@@ -13,20 +14,22 @@ const ToolBox = () => {
     const { type } = item;
     let jsx;
     switch (type) {
-      case "input":
-        jsx = <BusinessInputEdit key={item.id} {...item} />;
-        break;
-      case "radio":
-        jsx = <BusinessRadioEdit key={item.id} {...item} />;
-        break;
       case "carousel":
         jsx = <CarouselEdit key={item.id} {...item} />;
         break;
       case "search":
-        jsx = <BusinessSearchEdit key={item.id} {...item} />;
+        jsx = <SearchEdit key={item.id} {...item} />;
         break;
-      case "rich":
+      case "rich_text":
         jsx = <BusinessRichEdit key={item.id} {...item} />;
+        break;
+      case "image_text_nav":
+        jsx = <ImageTextNavEdit key={item.id} {...item} />;
+      case "notice":
+        jsx = <BusinessNoticeEdit key={item.id} {...item} />;
+        break;
+      case "elevator_navigation":
+        jsx = <ElevatorNavigationEdit key={item.id} {...item} />;
         break;
       default:
         jsx = null;

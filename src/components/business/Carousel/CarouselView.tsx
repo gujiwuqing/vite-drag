@@ -1,37 +1,16 @@
 import React from "react";
-import { Carousel } from "antd";
+import { Swiper } from "react-vant";
+const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
 
-const contentStyle: React.CSSProperties = {
-  margin: 0,
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-  width: "300px",
-};
-
-const CarouselView: React.FC = () => {
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
-  };
-
+const items = colors.map((color, index) => (
+  <Swiper.Item key={color}>
+    <div onClick={() => {}}>{index + 1}</div>
+  </Swiper.Item>
+));
+export default () => {
   return (
-    <Carousel afterChange={onChange} style={{ width: 300 }}>
-      <div>
-        <h3 style={contentStyle}>1</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>2</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>3</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>4</h3>
-      </div>
-    </Carousel>
+    <div className="demo-swiper">
+      <Swiper autoplay={5000}>{items}</Swiper>
+    </div>
   );
 };
-
-export default CarouselView;

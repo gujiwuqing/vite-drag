@@ -4,7 +4,7 @@
   width: 100vw;
 }
 
-.panel {
+.com {
   width: 200px;
 }
 .tool {
@@ -22,19 +22,27 @@
   padding: 20px;
 }
 
-.panel-item {
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: #555;
-    cursor: pointer;
-  }
-  div {
-    margin-bottom: 20px;
-  }
+.com-item{
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    width: 50%;
+    height: 88px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    cursor: move;
+}
+.com-item .com-item__icon {
+    display: inline-block;
+    margin-top: 8px;
+    background-position: 0 0;
+    height: 32px;
+    width: 32px;
+    background-size: cover;
+}
+
+.com-item-active .com-item__icon {
+    background-position: 0 32px;
 }
 
 .drag-item {

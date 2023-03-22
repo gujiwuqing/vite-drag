@@ -1,11 +1,12 @@
 import { Checkbox } from "antd";
 import { useAtom } from "jotai";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import BusinessInputView from "./components/business/BusinessInput/BusinessInputView";
-import BusinessRadioView from "./components/business/BusinessRadio/BusinessRadioView";
 import BusinessRichView from "./components/business/BusinessRich/BusinessRichView";
-import BusinessSearchView from "./components/business/BusinessSearch/BusinessSearchView";
 import CarouselView from "./components/business/Carousel/CarouselView";
+import BusinessNoticeView from "./components/business/BusinessNotice/BusinessNoticeView";
+import ElevatorNavigationView from "./components/business/ElevatorNavigation/ElevatorNavigationView";
+import ImageTextNavView from "./components/business/ImageTextNav/ImageTextNavView";
+import SearchView from "./components/business/Search/SearchView";
 import DragableItemView from "./DragableItemView";
 import { activeItemIdAtom, listAtom } from "./model/global";
 
@@ -22,38 +23,42 @@ const View = () => {
     };
     const { type } = item;
     switch (type) {
-      case "input":
-        return (
-          <DragableItemView {...commonProps}>
-            <BusinessInputView {...item} />
-          </DragableItemView>
-        );
-      case "radio":
-        return (
-          <DragableItemView {...commonProps}>
-            <BusinessRadioView {...item} />
-          </DragableItemView>
-        );
       case "carousel":
         return (
           <DragableItemView {...commonProps}>
             <CarouselView {...item} />
           </DragableItemView>
         );
-      case "search":
-        return (
-          <DragableItemView {...commonProps}>
-            <BusinessSearchView {...item} />
-          </DragableItemView>
-        );
-      case "rich":
+      case "rich_text":
         return (
           <DragableItemView {...commonProps}>
             <BusinessRichView {...item} />
           </DragableItemView>
         );
-      case "checkbox":
-        return <Checkbox />;
+      case "notice":
+        return (
+          <DragableItemView {...commonProps}>
+            <BusinessNoticeView {...item} />
+          </DragableItemView>
+        );
+      case "elevator_navigation":
+        return (
+          <DragableItemView {...commonProps}>
+            <ElevatorNavigationView {...item} />
+          </DragableItemView>
+        );
+      case "image_text_nav":
+        return (
+          <DragableItemView {...commonProps}>
+            <ImageTextNavView {...item} />
+          </DragableItemView>
+        );
+      case "search":
+        return (
+          <DragableItemView {...commonProps}>
+            <SearchView {...item} />
+          </DragableItemView>
+        );
       default:
         return "";
     }
