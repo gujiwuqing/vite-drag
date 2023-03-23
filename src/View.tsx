@@ -1,9 +1,8 @@
-import { Checkbox } from "antd";
 import { useAtom } from "jotai";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import BusinessNoticeView from "./components/business/BusinessNotice/BusinessNoticeView";
 import BusinessRichView from "./components/business/BusinessRich/BusinessRichView";
 import CarouselView from "./components/business/Carousel/CarouselView";
-import BusinessNoticeView from "./components/business/BusinessNotice/BusinessNoticeView";
 import ElevatorNavigationView from "./components/business/ElevatorNavigation/ElevatorNavigationView";
 import ImageTextNavView from "./components/business/ImageTextNav/ImageTextNavView";
 import SearchView from "./components/business/Search/SearchView";
@@ -14,7 +13,6 @@ const View = () => {
   const [list, setList] = useAtom(listAtom);
   const [activeItemId] = useAtom(activeItemIdAtom);
   const RenderItem = (item, index) => {
-    console.log("item", item);
     const commonProps = {
       index,
       id: item.id,
@@ -85,7 +83,7 @@ const View = () => {
     e.preventDefault();
     console.log("handleDragOver", e);
   };
-  const handleDrop = () => {
+  const handleDrop = (e) => {
     e.preventDefault();
     console.log("handleDrop", e);
   };
@@ -98,6 +96,7 @@ const View = () => {
               ref={provided.innerRef}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
+              className="view-content"
             >
               {list.map((item, index) => {
                 return <>{RenderItem(item, index)}</>;

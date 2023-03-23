@@ -58,7 +58,7 @@ const Panel = () => {
   ];
 
   const handleAddItem = (type: string) => {
-     if (type == "carousel") {
+    if (type == "carousel") {
       setList([
         ...list,
         {
@@ -86,11 +86,10 @@ const Panel = () => {
         {
           id: uuidv4(),
           type,
-          value: "",
-          placeholder: "请输入内容",
-          title: "搜索框",
-          mode: "",
-          color: "#f60",
+          text: "这是一条默认公告",
+          color: "#3f45ff",
+          background: "#edeeff",
+          scrollable: true,
         },
       ]);
     } else if (type == "image_text_nav") {
@@ -124,6 +123,9 @@ const Panel = () => {
           value: "",
           placeholder: "请输入内容",
           title: "搜索框",
+          shape: "square",
+          background: "#fff",
+          color: "#323232",
         },
       ]);
     }

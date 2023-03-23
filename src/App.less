@@ -10,18 +10,28 @@
 .tool {
   width: 500px;
   padding: 0 20px;
+  background-color: #fff;
 }
-@media (min-width: 1440px) and (max-width: 1960px) {
-  .tool {
-    width: 800px;
-  }
-}
+// @media (min-width: 1440px) and (max-width: 1960px) {
+//   .tool {
+//     width: 800px;
+//   }
+// }
 .view {
   flex: 1;
-  background-color: #fff;
+  background-color: #f5f5f5;
   min-height: 100vh;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+
+  &-content{
+    width:400px;
+     min-height: 100vh;
+     background-color: #fff;
+  }
 }
+
 
 .com-item{
     position: relative;
@@ -47,14 +57,35 @@
 }
 
 .drag-item {
-  padding: 20px;
   &-active {
-    padding: 20px;
-    border: 1px solid red;
+    border: 2px solid #155bd4;
   }
 }
 
 
 .color-preview{
   position: relative;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.color_picker{
+  position: absolute;
+  // bottom: 100%;
+    top: 30px;
+    right: 0;
+    z-index: 999;
+}
+
+
+.deco-control-group{
+  padding: 12px 16px;
+}
+
+.com-switch{
+  border: 1px solid #eee;
+  padding: 0 10px;
 }

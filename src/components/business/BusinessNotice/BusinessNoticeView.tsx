@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 import { VolumeO } from "@react-vant/icons";
 import { NoticeBar } from "react-vant";
-export default function BusinessNoticeView() {
+export default function BusinessNoticeView(props) {
+  const { text, color, background } = props;
   return (
     <NoticeBar
       leftIcon={<VolumeO />}
-      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+      text={text}
+      background={background}
+      color={color}
     />
   );
 }

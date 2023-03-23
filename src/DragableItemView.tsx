@@ -33,7 +33,7 @@ export default function DragableItemView({ id, index, children, isActive }) {
           )}
           onClick={handleClick}
         >
-          <div style={{ "pointer-events": "none" }}>{children}</div>
+          <div style={{ pointerEvents: "none" }}>{children}</div>
         </div>
       )}
     </Draggable>

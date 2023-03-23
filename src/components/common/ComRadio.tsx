@@ -2,21 +2,28 @@ import React, { useState } from "react";
 import type { RadioChangeEvent } from "antd";
 import { Radio } from "antd";
 
-const ComRadio: React.FC = () => {
-  const [value, setValue] = useState(1);
+interface RadioItem {
+  value: string;
+  text: string;
+}
+const ComRadio = (props) => {
+  const { list = [], defaultValue, label = "", onChange } = props;
+  const [value, setValue] = useState(defaultValue);
 
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
+  const onChangeValue = (e: RadioChangeEvent) => {
     setValue(e.target.value);
+    onChange && onChange(e.target.value);
   };
 
   return (
-    <Radio.Group onChange={onChange} value={value}>
-      <Radio value={1}>A</Radio>
-      <Radio value={2}>B</Radio>
-      <Radio value={3}>C</Radio>
-      <Radio value={4}>D</Radio>
-    </Radio.Group>
+    <div className="deco-control-group flex items-center justify-between">
+      <div>{label}</div>
+      <Radio.Group onChange={onChangeValue} value={value} buttonStyle="solid">
+        {list.map((item: RadioItem) => {
+          return <Radio.Button value={item.value}>{item.text}</Radio.Button>;
+        })}
+      </Radio.Group>
+    </div>
   );
 };
 
