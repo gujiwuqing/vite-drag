@@ -1,18 +1,15 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import View from "./View";
-import ToolBox from "./ToolBox";
+import Preview from "./Preview";
+import Editor from "./Editor";
 import Panel from "./Panel";
 import "./App.less";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <Panel />
-      <View />
-      <ToolBox />
+      <Preview />
+      <Editor />
     </div>
   );
 }

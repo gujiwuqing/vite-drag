@@ -59,6 +59,7 @@
 .drag-item {
   &-active {
     border: 2px solid #155bd4;
+    position: relative;
   }
 }
 
@@ -88,4 +89,35 @@
 .com-switch{
   border: 1px solid #eee;
   padding: 0 10px;
+}
+
+.com-operate {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    width: 38px;
+    height: 140px;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(200,201,204,.5);
+    border-radius: 2px;
+    padding: 2px 0;
+    box-sizing: border-box;
+    img{
+      width: 26px;
+      height: 26px;
+    }
+}
+
+.com-operate-img {
+    cursor: pointer;
+    width: 100%;
+    height: 34px;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 }

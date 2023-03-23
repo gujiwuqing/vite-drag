@@ -2,6 +2,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useAtom } from "jotai";
 import { activeItemIdAtom } from "./model/global";
+import ToolBox from "./ToolBox";
 import "./App.less";
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -33,6 +34,7 @@ export default function DragableItemView({ id, index, children, isActive }) {
           )}
           onClick={handleClick}
         >
+          {isActive && <ToolBox />}
           <div style={{ pointerEvents: "none" }}>{children}</div>
         </div>
       )}

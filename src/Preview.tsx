@@ -9,7 +9,7 @@ import SearchView from "./components/business/Search/SearchView";
 import DragableItemView from "./DragableItemView";
 import { activeItemIdAtom, listAtom } from "./model/global";
 
-const View = () => {
+const Preview = () => {
   const [list, setList] = useAtom(listAtom);
   const [activeItemId] = useAtom(activeItemIdAtom);
   const RenderItem = (item, index) => {
@@ -109,4 +109,4 @@ const View = () => {
   );
 };
 
-export default View;
+export default Preview;

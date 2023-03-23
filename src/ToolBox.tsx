@@ -1,47 +1,87 @@
+import React from "react";
+import upwardIcon from "./assets/FueYv1jc5D0AkaF0v3K4diy1DPKG.png";
+import downIcon from "./assets/FrIFvEtzBFK3edruBVYb-2Is6ym7.png";
+import copyIcon from "./assets/FmUtrCDn22WQfzkUYwgsjTkRNyuO.png";
+import deleteIcon from "./assets/Fn8qANLH3hZN30maWPVmk6goG73i.png";
+import { Button, Divider, Segmented, Tooltip } from "antd";
+import { v4 as uuidv4 } from "uuid";
 import { useAtom } from "jotai";
-import BusinessRichEdit from "./components/business/BusinessRich/BusinessRichEdit";
-import SearchEdit from "./components/business/Search/SearchEdit";
-import CarouselEdit from "./components/business/Carousel/CarouselEdit";
 import { activeItemIdAtom, listAtom } from "./model/global";
-import BusinessNoticeEdit from "./components/business/BusinessNotice/BusinessNoticeEdit";
-import ImageTextNavEdit from "./components/business/ImageTextNav/ImageTextNavEdit";
-import ElevatorNavigationEdit from "./components/business/ElevatorNavigation/ElevatorNavigationEdit";
-const ToolBox = () => {
+export default function ToolBox() {
   const [activeItemId] = useAtom(activeItemIdAtom);
-  const [list] = useAtom(listAtom);
-  const getRender = (item) => {
-    if (!item) return null;
-    const { type } = item;
-    let jsx;
+  const [list, setList] = useAtom(listAtom);
+  const toolList = [
+    {
+      text: "向上移动",
+      type: "upward",
+      icon: upwardIcon,
+    },
+    {
+      text: "向下移动",
+      type: "down",
+      icon: downIcon,
+    },
+    {
+      text: "复制",
+      type: "copy",
+      icon: copyIcon,
+    },
+    {
+      text: "删除",
+      type: "delete",
+      icon: deleteIcon,
+    },
+  ];
+
+  const handleClick = (type: string) => {
     switch (type) {
-      case "carousel":
-        jsx = <CarouselEdit key={item.id} {...item} />;
+      case "upward":
+        let upwardArr = JSON.parse(JSON.stringify(list));
+        let j = upwardArr.findIndex((t) => t.id == activeItemId);
+        if (j != 0) {
+          upwardArr.splice(j, 1, ...upwardArr.splice(j - 1, 1, upwardArr[j]));
+        }
+        setList([...upwardArr]);
         break;
-      case "search":
-        jsx = <SearchEdit key={item.id} {...item} />;
+      case "down":
+        let downArr = JSON.parse(JSON.stringify(list));
+        let i = downArr.findIndex((t) => t.id == activeItemId);
+        if (i < downArr.length) {
+          downArr.splice(i, 1, ...downArr.splice(i + 1, 1, downArr[i]));
+        }
+        setList([...downArr]);
         break;
-      case "rich_text":
-        jsx = <BusinessRichEdit key={item.id} {...item} />;
+      case "copy":
+        let copyArr = JSON.parse(JSON.stringify(list));
+        let item = copyArr.find((t) => t.id == activeItemId);
+        let index = copyArr.findIndex((t) => t.id == activeItemId);
+        copyArr.splice(index + 1, 0, { ...item, id: uuidv4() });
+        setList([...copyArr]);
         break;
-      case "image_text_nav":
-        jsx = <ImageTextNavEdit key={item.id} {...item} />;
-      case "notice":
-        jsx = <BusinessNoticeEdit key={item.id} {...item} />;
-        break;
-      case "elevator_navigation":
-        jsx = <ElevatorNavigationEdit key={item.id} {...item} />;
+      case "delete":
+        let arr = list.filter((t) => t.id != activeItemId);
+        setList(arr);
         break;
       default:
-        jsx = null;
         break;
     }
-    return jsx;
   };
   return (
-    <div className="tool">
-      {getRender(list.find((t) => t.id == activeItemId))}
+    <div className="com-operate">
+      {toolList.map((item) => {
+        return (
+          <Tooltip key={item.type} placement="right" title={item.text}>
+            <div
+              className="com-operate-img"
+              onClick={() => {
+                handleClick(item.type);
+              }}
+            >
+              <img src={item.icon} alt="" />
+            </div>
+          </Tooltip>
+        );
+      })}
     </div>
   );
-};
-
-export default ToolBox;
+}
