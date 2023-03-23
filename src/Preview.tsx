@@ -18,6 +18,7 @@ const Preview = () => {
       id: item.id,
       key: item.id,
       isActive: item.id === activeItemId,
+      name: item.name,
     };
     const { type } = item;
     switch (type) {

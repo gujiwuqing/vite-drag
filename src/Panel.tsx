@@ -18,46 +18,46 @@ const Panel = () => {
     {
       type: "title",
       icon: titleIcon,
-      text: "标题文本",
+      name: "标题文本",
     },
     {
       type: "elevator_navigation",
       icon: elevatorNavigationIcon,
-      text: "电梯导航",
+      name: "电梯导航",
     },
     {
       type: "goods",
       icon: goodsIcon,
-      text: "商品",
+      name: "商品",
     },
     {
       type: "carousel",
       icon: carouselIcon,
-      text: "图文广告",
+      name: "图文广告",
     },
     {
       type: "image_text_nav",
       icon: imageTextNavIcon,
-      text: "图文导航",
+      name: "图文导航",
     },
     {
       type: "rich_text",
       icon: richTextIcon,
-      text: "富文本",
+      name: "富文本",
     },
     {
       type: "search",
       icon: searchIcon,
-      text: "商品搜索",
+      name: "商品搜索",
     },
     {
       type: "notice",
       icon: noticeIcon,
-      text: "公告",
+      name: "公告",
     },
   ];
 
-  const handleAddItem = (type: string) => {
+  const handleAddItem = (type: string, name: string) => {
     if (type == "carousel") {
       setList([
         ...list,
@@ -67,6 +67,7 @@ const Panel = () => {
           value: "",
           placeholder: "请输入内容",
           title: "标题",
+          name,
         },
       ]);
     } else if (type == "rich_text") {
@@ -75,9 +76,10 @@ const Panel = () => {
         {
           id: uuidv4(),
           type,
-          value: "",
+          value: "这是一个富文本",
           placeholder: "请输入内容",
           title: "搜索框",
+          name,
         },
       ]);
     } else if (type == "notice") {
@@ -90,6 +92,7 @@ const Panel = () => {
           color: "#3f45ff",
           background: "#edeeff",
           scrollable: true,
+          name,
         },
       ]);
     } else if (type == "image_text_nav") {
@@ -101,6 +104,7 @@ const Panel = () => {
           value: "",
           placeholder: "请输入内容",
           title: "搜索框",
+          name,
         },
       ]);
     } else if (type == "elevator_navigation") {
@@ -109,6 +113,7 @@ const Panel = () => {
         {
           id: uuidv4(),
           type,
+          name,
           value: "",
           placeholder: "请输入内容",
           title: "搜索框",
@@ -120,6 +125,7 @@ const Panel = () => {
         {
           id: uuidv4(),
           type,
+          name,
           value: "",
           placeholder: "请输入内容",
           title: "搜索框",
@@ -141,14 +147,14 @@ const Panel = () => {
               key={item.type}
               className="com-item"
               onClick={() => {
-                handleAddItem(item.type);
+                handleAddItem(item.type, item.name);
               }}
             >
               <i
                 className="com-item__icon"
                 style={{ backgroundImage: `url(${item.icon})` }}
               ></i>
-              <div>{item.text}</div>
+              <div>{item.name}</div>
             </Col>
           );
         })}

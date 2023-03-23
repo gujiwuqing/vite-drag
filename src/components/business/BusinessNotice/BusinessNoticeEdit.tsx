@@ -19,6 +19,7 @@ export default function BusinessNoticeEdit(props) {
   };
   return (
     <div>
+      <div className="com-title">公告</div>
       <ComInput
         label="公告内容"
         defaultValue={text}

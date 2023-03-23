@@ -13,7 +13,13 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // styles we need to apply on draggables
   ...draggableStyle,
 });
-export default function DragableItemView({ id, index, children, isActive }) {
+export default function DragableItemView({
+  id,
+  index,
+  children,
+  isActive,
+  name,
+}) {
   const [activeItemId, setActiveItemId] = useAtom(activeItemIdAtom);
   const handleClick = (e) => {
     e.preventDefault();
@@ -34,6 +40,13 @@ export default function DragableItemView({ id, index, children, isActive }) {
           )}
           onClick={handleClick}
         >
+          <div
+            className={`com-operate-view_name ${
+              isActive ? "com-operate-view_name_active" : ""
+            }`}
+          >
+            {name}
+          </div>
           {isActive && <ToolBox />}
           <div style={{ pointerEvents: "none" }}>{children}</div>
         </div>

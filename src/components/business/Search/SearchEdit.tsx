@@ -24,6 +24,7 @@ export default function SearchEdit(props) {
   };
   return (
     <div>
+      <div className="com-title">商品搜索</div>
       <ComInput
         label="占位提示文字"
         defaultValue={placeholder}
