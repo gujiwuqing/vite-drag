@@ -1,17 +1,18 @@
 import React, { CSSProperties } from "react";
-import { createFromIconfontCN } from "@ant-design/icons";
+import { createFromIconfontCN } from "@react-vant/icons";
 
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/c/font_2434100_dkvddv42eic.js",
-});
+const IconFont = createFromIconfontCN(
+  "//at.alicdn.com/t/c/font_2434100_dkvddv42eic.js"
+);
 
 interface SvgProps {
-  type: string;
-  style?: CSSProperties;
+  name: string;
+  fontSize?: number | string;
+  color: string;
 }
 
-const Svg = ({ type, style }: SvgProps) => (
-  <IconFont type={type} style={style} />
+const Svg = ({ name, fontSize, color }: SvgProps) => (
+  <IconFont name={name} fontSize={fontSize} color={color} />
 );
 
 export default Svg;

@@ -3,6 +3,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import BusinessNoticeView from "./components/business/BusinessNotice/BusinessNoticeView";
 import BusinessRichView from "./components/business/BusinessRich/BusinessRichView";
 import CarouselView from "./components/business/Carousel/CarouselView";
+import TitleView from "./components/business/Title/TitleView";
 import ElevatorNavigationView from "./components/business/ElevatorNavigation/ElevatorNavigationView";
 import ImageTextNavView from "./components/business/ImageTextNav/ImageTextNavView";
 import SearchView from "./components/business/Search/SearchView";
@@ -22,6 +23,12 @@ const Preview = () => {
     };
     const { type } = item;
     switch (type) {
+      case "title":
+        return (
+          <DragableItemView {...commonProps}>
+            <TitleView {...item} />
+          </DragableItemView>
+        );
       case "carousel":
         return (
           <DragableItemView {...commonProps}>

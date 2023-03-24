@@ -20,7 +20,11 @@ const ComRadio = (props) => {
       <div>{label}</div>
       <Radio.Group onChange={onChangeValue} value={value} buttonStyle="solid">
         {list.map((item: RadioItem) => {
-          return <Radio.Button value={item.value}>{item.text}</Radio.Button>;
+          return (
+            <Radio.Button value={item.value} key={item.value}>
+              {item.text}
+            </Radio.Button>
+          );
         })}
       </Radio.Group>
     </div>

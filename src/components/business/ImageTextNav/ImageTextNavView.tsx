@@ -2,14 +2,14 @@ import React from "react";
 import { Grid } from "react-vant";
 import { ShopO } from "@react-vant/icons";
 
-export default function ImageTextNavView() {
+export default function ImageTextNavView(props) {
+  const { navList } = props;
   return (
     <div>
       <Grid>
-        <Grid.Item icon={<ShopO />} text="文字" />
-        <Grid.Item icon={<ShopO />} text="文字" />
-        <Grid.Item icon={<ShopO />} text="文字" />
-        <Grid.Item icon={<ShopO />} text="文字" />
+        {navList.map((item) => {
+          return <Grid.Item icon={<ShopO />} text={item.text} key={item.id} />;
+        })}
       </Grid>
     </div>
   );

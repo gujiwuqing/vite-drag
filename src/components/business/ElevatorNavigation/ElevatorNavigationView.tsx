@@ -1,14 +1,18 @@
 import React from "react";
 import { Tabs } from "react-vant";
 
-const items = Array.from({ length: 3 }, (_, i) => i + 1);
-
-const ElevatorNavigationView = () => {
+const ElevatorNavigationView = (props) => {
+  const { tabType, background, color, navList } = props;
   return (
     <div className="demo-tabs">
-      <Tabs defaultActive={2}>
-        {items.map((item) => (
-          <Tabs.TabPane key={item} title={`标签${item}`}></Tabs.TabPane>
+      <Tabs
+        defaultActive={0}
+        type={tabType}
+        background={background}
+        color={color}
+      >
+        {navList.map((item) => (
+          <Tabs.TabPane key={item.id} title={item.text}></Tabs.TabPane>
         ))}
       </Tabs>
     </div>

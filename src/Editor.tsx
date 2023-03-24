@@ -1,11 +1,12 @@
 import { useAtom } from "jotai";
-import BusinessRichEdit from "./components/business/BusinessRich/BusinessRichEdit";
-import SearchEdit from "./components/business/Search/SearchEdit";
-import CarouselEdit from "./components/business/Carousel/CarouselEdit";
-import { activeItemIdAtom, listAtom } from "./model/global";
 import BusinessNoticeEdit from "./components/business/BusinessNotice/BusinessNoticeEdit";
-import ImageTextNavEdit from "./components/business/ImageTextNav/ImageTextNavEdit";
+import BusinessRichEdit from "./components/business/BusinessRich/BusinessRichEdit";
+import CarouselEdit from "./components/business/Carousel/CarouselEdit";
 import ElevatorNavigationEdit from "./components/business/ElevatorNavigation/ElevatorNavigationEdit";
+import ImageTextNavEdit from "./components/business/ImageTextNav/ImageTextNavEdit";
+import SearchEdit from "./components/business/Search/SearchEdit";
+import TitleEdit from "./components/business/Title/TitleEdit";
+import { activeItemIdAtom, listAtom } from "./model/global";
 const Editor = () => {
   const [activeItemId] = useAtom(activeItemIdAtom);
   const [list] = useAtom(listAtom);
@@ -14,6 +15,9 @@ const Editor = () => {
     const { type } = item;
     let jsx;
     switch (type) {
+      case "title":
+        jsx = <TitleEdit key={item.id} {...item} />;
+        break;
       case "carousel":
         jsx = <CarouselEdit key={item.id} {...item} />;
         break;
@@ -25,6 +29,7 @@ const Editor = () => {
         break;
       case "image_text_nav":
         jsx = <ImageTextNavEdit key={item.id} {...item} />;
+        break;
       case "notice":
         jsx = <BusinessNoticeEdit key={item.id} {...item} />;
         break;
