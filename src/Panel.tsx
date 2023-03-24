@@ -104,22 +104,22 @@ const Panel = () => {
         color: "#000",
         navList: [
           {
-            icon: "",
+            icon: "iconshouye1",
             text: "导航一",
             id: uuidv4(),
           },
           {
-            icon: "",
+            icon: "iconshouye1",
             text: "导航二",
             id: uuidv4(),
           },
           {
-            icon: "",
+            icon: "iconshouye1",
             text: "导航三",
             id: uuidv4(),
           },
           {
-            icon: "",
+            icon: "iconshouye1",
             text: "导航四",
             id: uuidv4(),
           },

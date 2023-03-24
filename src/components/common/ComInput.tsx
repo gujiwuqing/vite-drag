@@ -1,9 +1,12 @@
 import React from "react";
 import { Input } from "antd";
 export default function ComInput(props) {
-  const { label = "", defaultValue, onChange } = props;
+  const { label = "", defaultValue, onChange, style } = props;
   return (
-    <div className="deco-control-group flex items-center justify-between">
+    <div
+      className="deco-control-group flex items-center justify-between"
+      style={style}
+    >
       <div style={{ width: 200 }}>{label}</div>
       <Input
         value={defaultValue}

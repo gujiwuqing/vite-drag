@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ComColor from "../../common/ComColor";
 import ComRadio from "../../common/ComRadio";
 import ComInput from "../../common/ComInput";
@@ -6,9 +6,14 @@ import { listAtom } from "../../../model/global";
 import { v4 as uuidv4 } from "uuid";
 import { useAtom } from "jotai";
 import { Button, message } from "antd";
-export default function ImageTextNav(props) {
-  const { id, background, placeholder, color, tabType, navList = [] } = props;
+import ComIconSelect from "../../common/ComIconSelect";
+import Svg from "../../common/Svg";
+import { ImageTextNavDTO } from "../../../interface";
+export default function ImageTextNav(props: ImageTextNavDTO) {
+  const { id, background, color, tabType, navList = [] } = props;
   const [list, setList] = useAtom(listAtom);
+  const [visible, setVisible] = useState(false);
+  const [currentId, setCurrentId] = useState("");
   const typeList = [
     { text: "图片导航", value: "image_text" },
     { text: "文字导航", value: "text" },
@@ -25,6 +30,11 @@ export default function ImageTextNav(props) {
     setList(newArr);
   };
 
+  /**
+   * 新增导航项
+   * @returns
+   */
+
   const handleAddItem = () => {
     if (navList.length == 8) return message.error("最多可添加8条导航");
     const newArr: any[] = list.map((item: any) => {
@@ -33,7 +43,11 @@ export default function ImageTextNav(props) {
           ...item,
           navList: [
             ...navList,
-            { icon: "", text: `导航${navList.length + 1}`, id: uuidv4() },
+            {
+              icon: "iconshouye1",
+              text: `导航${navList.length + 1}`,
+              id: uuidv4(),
+            },
           ],
         };
       } else {
@@ -43,10 +57,25 @@ export default function ImageTextNav(props) {
     setList(newArr);
   };
 
+  /**
+   * 修改导航项
+   * @param id
+   * @param type
+   * @param value
+   */
   const handleChangeItem = (id: string, type: string, value: string) => {
     const item = navList.find((t: { id: string }) => t.id == id);
     item[type] = value;
     handleChange({ navList });
+  };
+
+  /**
+   * 删除导航项
+   * @param id
+   */
+  const handleDeleteItem = (id: string) => {
+    const newArr = navList.filter((t) => t.id !== id);
+    handleChange({ navList: newArr });
   };
   return (
     <div>
@@ -54,20 +83,59 @@ export default function ImageTextNav(props) {
       <div className="deco-control-group--bg-colored deco-control-group">
         {navList.map((item) => {
           return (
-            <div key={item.id}>
-              <img src="" alt="" />
+            <div
+              key={item.id}
+              className="flex justify-between items-center border-solid bg-white mt-3 mb-3 p-3 mr-4 relative"
+            >
+              <div
+                style={{ width: 120, display: "flex", flexDirection: "column" }}
+              >
+                <Svg name={item.icon} />
+                <div
+                  onClick={() => {
+                    setVisible(true);
+                    setCurrentId(item.id);
+                  }}
+                >
+                  更换icon
+                </div>
+              </div>
               <ComInput
+                style={{ width: 360 }}
                 label="标题"
                 defaultValue={item.text}
                 onChange={(value: string) => {
                   handleChangeItem(item.id, "text", value);
                 }}
               />
+              <div
+                className="absolute right-0 top-0 cursor-pointer"
+                onClick={() => {
+                  handleDeleteItem(item.id);
+                }}
+              >
+                <Svg name="iconclose" />
+              </div>
             </div>
           );
         })}
-        <Button onClick={handleAddItem}>添加图文导航</Button>
+        <Button onClick={handleAddItem} type="primary" className="mt-2">
+          添加图文导航
+        </Button>
       </div>
+      <ComIconSelect
+        visible={visible}
+        defaultValue={navList.find((t) => t.id == currentId)?.icon}
+        handleOk={(value: string) => {
+          setVisible(false);
+          handleChangeItem(currentId, "icon", value);
+          setCurrentId("");
+        }}
+        handleCancel={() => {
+          setVisible(false);
+          setCurrentId("");
+        }}
+      />
       <ComRadio
         list={typeList}
         defaultValue={tabType}

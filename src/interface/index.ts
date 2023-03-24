@@ -15,11 +15,14 @@ export type CarouselDTO = {
   name: string;
 };
 
-type navItemDTO = {
+interface NavItemDTO {
   id: string;
-  icon?: string;
   text: string;
-};
+}
+
+interface ImageTextNavItemDTO extends NavItemDTO {
+  icon: string;
+}
 
 export type ImageTextNavDTO = {
   id: string;
@@ -28,7 +31,7 @@ export type ImageTextNavDTO = {
   tabType: string;
   background: string;
   color: string;
-  navList: navItemDTO[];
+  navList: ImageTextNavItemDTO[];
 };
 
 export type ElevatorNavigationDTO = {
@@ -38,7 +41,7 @@ export type ElevatorNavigationDTO = {
   tabType: string;
   background: string;
   color: string;
-  navList: navItemDTO[];
+  navList: NavItemDTO[];
 };
 
 export type SearchDTO = {
