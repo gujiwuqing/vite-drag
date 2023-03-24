@@ -6,8 +6,10 @@ import { listAtom } from "../../../model/global";
 import { useAtom } from "jotai";
 import { v4 as uuidv4 } from "uuid";
 import { Button, message } from "antd";
-export default function ElevatorNavigationEdit(props) {
-  const { id, background, placeholder, color, tabType, navList = [] } = props;
+import Svg from '../../common/Svg';
+import {ElevatorNavigationDTO} from '../../../interface';
+export default function ElevatorNavigationEdit(props:ElevatorNavigationDTO) {
+  const { id, background, color, tabType, navList = [] } = props;
   const [list, setList] = useAtom(listAtom);
   const typeList = [
     { text: "默认", value: "line" },
@@ -44,7 +46,7 @@ export default function ElevatorNavigationEdit(props) {
           ...item,
           navList: [
             ...navList,
-            { icon: "", text: `导航${navList.length + 1}`, id: uuidv4() },
+            { icon: "", text: `标签${navList.length + 1}`, id: uuidv4() },
           ],
         };
       } else {
@@ -59,13 +61,22 @@ export default function ElevatorNavigationEdit(props) {
     item[type] = value;
     handleChange({ navList });
   };
+
+  /**
+   * 删除导航项
+   * @param id
+   */
+  const handleDeleteItem = (id: string) => {
+    const newArr = navList.filter((t) => t.id !== id);
+    handleChange({ navList: newArr });
+  };
   return (
     <div>
       <div className="com-title">电梯导航</div>
       <div className="deco-control-group--bg-colored deco-control-group">
         {navList.map((item) => {
           return (
-            <div key={item.id}>
+            <div key={item.id}  className="flex justify-between items-center border-solid bg-white mt-3 mb-3 p-3 mr-4 relative">
               <ComInput
                 label="标题"
                 defaultValue={item.text}
@@ -73,10 +84,18 @@ export default function ElevatorNavigationEdit(props) {
                   handleChangeItem(item.id, "text", value);
                 }}
               />
+              <div
+                className="absolute right-0 top-0 cursor-pointer"
+                onClick={() => {
+                  handleDeleteItem(item.id);
+                }}
+              >
+                <Svg name="iconclose" />
+              </div>
             </div>
           );
         })}
-        <Button onClick={handleAddItem}>添加导航</Button>
+        <Button onClick={handleAddItem} type="primary" className="mt-2 h-10" block>添加导航</Button>
       </div>
       <ComRadio
         list={typeList}

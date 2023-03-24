@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from 'react';
 import { Button, Col, Modal, Radio, Row } from "antd";
 import Svg from "./Svg";
 export default function ComIconSelect(props) {
@@ -16,7 +16,7 @@ export default function ComIconSelect(props) {
     { icon: "iconhuiyuan1", text: "会员" },
     { icon: "iconshangpu1", text: "店铺" },
   ];
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState('');
   const onOk = () => {
     handleOk && handleOk(value);
   };
@@ -24,6 +24,9 @@ export default function ComIconSelect(props) {
   const onCancel = () => {
     handleCancel && handleCancel();
   };
+  useEffect(()=>{
+    setValue((defaultValue))
+  },[defaultValue])
   return (
     <Modal title="图标选择" open={visible} onOk={onOk} onCancel={onCancel}>
       <Radio.Group value={value}>

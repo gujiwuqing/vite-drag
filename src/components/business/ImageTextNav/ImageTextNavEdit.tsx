@@ -119,7 +119,7 @@ export default function ImageTextNav(props: ImageTextNavDTO) {
             </div>
           );
         })}
-        <Button onClick={handleAddItem} type="primary" className="mt-2">
+        <Button onClick={handleAddItem} type="primary" className="mt-2 h-10" block>
           添加图文导航
         </Button>
       </div>
