@@ -8,11 +8,13 @@ import ElevatorNavigationView from "./components/business/ElevatorNavigation/Ele
 import ImageTextNavView from "./components/business/ImageTextNav/ImageTextNavView";
 import SearchView from "./components/business/Search/SearchView";
 import DragableItemView from "./DragableItemView";
-import { activeItemIdAtom, listAtom } from "./model/global";
+import { activeItemIdAtom, listAtom, dragTypeAtom } from "./model/global";
+import { handleAddView } from "./util";
 
 const Preview = () => {
   const [list, setList] = useAtom(listAtom);
   const [activeItemId] = useAtom(activeItemIdAtom);
+  const [dragType] = useAtom(dragTypeAtom);
   const RenderItem = (item, index) => {
     const commonProps = {
       index,
@@ -93,9 +95,19 @@ const Preview = () => {
     e.stopPropagation();
     // console.log("e.target", e);
   };
-  const handleDrop = (e) => {
+  const handleDrop: React.DragEventHandler<HTMLDivElement> = (e) => {
+    console.log("dragType", dragType);
     e.preventDefault();
-    console.log("handleDrop", e);
+    const target = e.target as HTMLDivElement;
+    if (target !== e.currentTarget) {
+      return;
+    }
+    if (!dragType.type) return;
+    console.log("dragType", dragType);
+    const type = dragType.type;
+    const name = dragType.name;
+   const newItem = handleAddView(type, name);
+   setList([...list, newItem]);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
