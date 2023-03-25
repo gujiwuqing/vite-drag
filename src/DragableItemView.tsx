@@ -19,6 +19,7 @@ export default function DragableItemView({
   children,
   isActive,
   name,
+  type,
 }) {
   const [activeItemId, setActiveItemId] = useAtom(activeItemIdAtom);
   const handleClick = (e) => {
@@ -48,7 +49,9 @@ export default function DragableItemView({
             {name}
           </div>
           {isActive && <ToolBox />}
-          <div style={{ pointerEvents: "none" }}>{children}</div>
+          <div style={{ pointerEvents: "none" }} data-type={type}>
+            {children}
+          </div>
         </div>
       )}
     </Draggable>

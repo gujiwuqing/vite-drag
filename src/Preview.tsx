@@ -20,6 +20,7 @@ const Preview = () => {
       key: item.id,
       isActive: item.id === activeItemId,
       name: item.name,
+      type: item.type,
     };
     const { type } = item;
     switch (type) {
@@ -87,9 +88,10 @@ const Preview = () => {
     setList(items);
   };
 
-  const handleDragOver = (e) => {
+  const handleDragOver: React.DragEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
-    console.log("handleDragOver", e);
+    e.stopPropagation();
+    // console.log("e.target", e);
   };
   const handleDrop = (e) => {
     e.preventDefault();

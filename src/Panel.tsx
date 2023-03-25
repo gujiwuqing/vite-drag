@@ -172,6 +172,7 @@ const Panel = () => {
     const newItem = handleAddView(type, name);
     setList([...list, newItem]);
   };
+
   return (
     <div className="com">
       <h1>组件</h1>
@@ -184,6 +185,14 @@ const Panel = () => {
               className="com-item"
               onClick={() => {
                 handleAddItem(item.type, item.name);
+              }}
+              draggable={true}
+              data-type={item.type}
+              onDragEnd={(e) => {
+                handleAddItem(
+                  e.target?.dataset?.type,
+                  panelList.find((t) => t.type == e.target?.dataset?.type)?.name
+                );
               }}
             >
               <i
