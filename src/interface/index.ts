@@ -8,11 +8,18 @@ export type TitleDTO = {
   name: string;
 };
 
+type imgItem = {
+  id: string;
+  url: string;
+};
+
 export type CarouselDTO = {
   id: string;
   type: string;
-  value: string;
+  loop: boolean;
   name: string;
+  imgList: imgItem[];
+  autoplay?: number | boolean;
 };
 
 interface NavItemDTO {

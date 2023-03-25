@@ -17,8 +17,30 @@ export const handleAddView = (type: string, name: string): ViewListItem => {
     return {
       id: uuidv4(),
       type,
-      value: "",
+      loop:true,
       name,
+      imgList: [
+        {
+          url: "https://t7.baidu.com/it/u=1956604245,3662848045&fm=193&f=GIF",
+          id: uuidv4(),
+        },
+        {
+          url: "https://t7.baidu.com/it/u=2397542458,3133539061&fm=193&f=GIF",
+          id: uuidv4(),
+        },
+        {
+          url: "https://t7.baidu.com/it/u=2397542458,3133539061&fm=193&f=GIF",
+          id: uuidv4(),
+        },
+        {
+          url: "https://t7.baidu.com/it/u=2397542458,3133539061&fm=193&f=GIF",
+          id: uuidv4(),
+        },
+        {
+          url: "https://t7.baidu.com/it/u=1956604245,3662848045&fm=193&f=GIF",
+          id: uuidv4(),
+        },
+      ],
     };
   } else if (type == "rich_text") {
     return {
