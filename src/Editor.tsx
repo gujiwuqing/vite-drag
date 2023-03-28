@@ -6,6 +6,7 @@ import ElevatorNavigationEdit from "./components/business/ElevatorNavigation/Ele
 import ImageTextNavEdit from "./components/business/ImageTextNav/ImageTextNavEdit";
 import SearchEdit from "./components/business/Search/SearchEdit";
 import TitleEdit from "./components/business/Title/TitleEdit";
+import GoodEdit from "./components/business/Good/GoodEdit";
 import { activeItemIdAtom, listAtom } from "./model/global";
 const Editor = () => {
   const [activeItemId] = useAtom(activeItemIdAtom);
@@ -35,6 +36,9 @@ const Editor = () => {
         break;
       case "elevator_navigation":
         jsx = <ElevatorNavigationEdit key={item.id} {...item} />;
+        break;
+         case "goods":
+        jsx = <GoodEdit key={item.id} {...item} />;
         break;
       default:
         jsx = null;

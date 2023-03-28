@@ -77,6 +77,21 @@ export type NoticeDTO = {
   scrollable: boolean;
 };
 
+export interface GoodItemDTO {
+  id: string;
+  title: string;
+  price: number;
+  linePrice?: number;
+  url: string;
+}
+
+export type GoodDTO = {
+  id: string;
+  type: string;
+  name: string;
+  goodsList: GoodItemDTO[];
+};
+
 export type ViewListItem =
   | TitleDTO
   | CarouselDTO
@@ -84,4 +99,5 @@ export type ViewListItem =
   | ElevatorNavigationDTO
   | SearchDTO
   | NoticeDTO
-  | RichDTO;
+  | RichDTO
+  | GoodDTO;

@@ -1,15 +1,16 @@
 import { useAtom } from "jotai";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import BusinessNoticeView from "./components/business/BusinessNotice/BusinessNoticeView";
-import BusinessRichView from "./components/business/BusinessRich/BusinessRichView";
-import CarouselView from "./components/business/Carousel/CarouselView";
-import TitleView from "./components/business/Title/TitleView";
-import ElevatorNavigationView from "./components/business/ElevatorNavigation/ElevatorNavigationView";
-import ImageTextNavView from "./components/business/ImageTextNav/ImageTextNavView";
-import SearchView from "./components/business/Search/SearchView";
+import BusinessNoticeView from "@/components/business/BusinessNotice/BusinessNoticeView";
+import BusinessRichView from "@/components/business/BusinessRich/BusinessRichView";
+import CarouselView from "@/components/business/Carousel/CarouselView";
+import TitleView from "@/components/business/Title/TitleView";
+import ElevatorNavigationView from "@/components/business/ElevatorNavigation/ElevatorNavigationView";
+import ImageTextNavView from "@/components/business/ImageTextNav/ImageTextNavView";
+import SearchView from "@/components/business/Search/SearchView";
 import DragableItemView from "./DragableItemView";
 import { activeItemIdAtom, listAtom, dragTypeAtom } from "./model/global";
 import { handleAddView } from "./util";
+import GoodView from "@/components/business/Good/GoodView";
 
 const Preview = () => {
   const [list, setList] = useAtom(listAtom);
@@ -68,6 +69,12 @@ const Preview = () => {
             <SearchView {...item} />
           </DragableItemView>
         );
+      case "goods":
+        return (
+          <DragableItemView {...commonProps}>
+            <GoodView {...item} />
+          </DragableItemView>
+        );
       default:
         return "";
     }
@@ -106,8 +113,8 @@ const Preview = () => {
     console.log("dragType", dragType);
     const type = dragType.type;
     const name = dragType.name;
-   const newItem = handleAddView(type, name);
-   setList([...list, newItem]);
+    const newItem = handleAddView(type, name);
+    setList([...list, newItem]);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>

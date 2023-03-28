@@ -13,3 +13,7 @@ body,html{
 :where(.css-dev-only-do-not-override-ph9edi).ant-btn-primary{
   background-color: #1677ff!important;
 }
+
+em, i {
+    font-style: normal;
+}
