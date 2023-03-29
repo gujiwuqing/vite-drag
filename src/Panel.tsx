@@ -65,8 +65,10 @@ const Panel = () => {
   };
 
   return (
-    <div className="com">
-      <h1>组件</h1>
+    <div className="com bg-white">
+      <h1 className="h-10 flex justify-center items-center border-solid border-black border-b-2">
+        组件
+      </h1>
       <Row>
         {panelList.map((item) => {
           return (

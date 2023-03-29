@@ -11,6 +11,7 @@ import DragableItemView from "./DragableItemView";
 import { activeItemIdAtom, listAtom, dragTypeAtom } from "./model/global";
 import { handleAddView } from "./util";
 import GoodView from "@/components/business/Good/GoodView";
+import headerIcon from "@/assets/phone-head.d6916777.png";
 
 const Preview = () => {
   const [list, setList] = useAtom(listAtom);
@@ -117,24 +118,34 @@ const Preview = () => {
     setList([...list, newItem]);
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="view">
-        <Droppable droppableId="droppable">
-          {(provided) => (
-            <div
-              ref={provided.innerRef}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              className="view-content"
-            >
-              {list.map((item, index) => {
-                return <>{RenderItem(item, index)}</>;
-              })}
-            </div>
-          )}
-        </Droppable>
-      </div>
-    </DragDropContext>
+    <div className="view">
+      <div
+        style={{
+          backgroundImage: `url(${headerIcon})`,
+          backgroundSize: "cover",
+          height: 64,
+          width: 400,
+        }}
+      ></div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div>
+          <Droppable droppableId="droppable">
+            {(provided) => (
+              <div
+                ref={provided.innerRef}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                className="view-content"
+              >
+                {list.map((item, index) => {
+                  return <>{RenderItem(item, index)}</>;
+                })}
+              </div>
+            )}
+          </Droppable>
+        </div>
+      </DragDropContext>
+    </div>
   );
 };
 
