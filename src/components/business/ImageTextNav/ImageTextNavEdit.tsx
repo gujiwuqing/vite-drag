@@ -88,17 +88,14 @@ export default function ImageTextNav(props: ImageTextNavDTO) {
               className="flex justify-between items-center border-solid bg-white mt-3 mb-3 p-3 mr-4 relative"
             >
               <div
-                style={{ width: 120, display: "flex", flexDirection: "column" }}
+                className="flex items-center justify-center cursor-pointer flex-col w-20"
+                onClick={() => {
+                  setVisible(true);
+                  setCurrentId(item.id);
+                }}
               >
-                <Svg name={item.icon} />
-                <div
-                  onClick={() => {
-                    setVisible(true);
-                    setCurrentId(item.id);
-                  }}
-                >
-                  更换icon
-                </div>
+                <Svg name={item.icon} fontSize={34} />
+                <div>更换icon</div>
               </div>
               <ComInput
                 style={{ width: 360 }}
@@ -119,7 +116,12 @@ export default function ImageTextNav(props: ImageTextNavDTO) {
             </div>
           );
         })}
-        <Button onClick={handleAddItem} type="primary" className="mt-2 h-10" block>
+        <Button
+          onClick={handleAddItem}
+          type="primary"
+          className="mt-2 h-10"
+          block
+        >
           添加图文导航
         </Button>
       </div>
@@ -141,6 +143,7 @@ export default function ImageTextNav(props: ImageTextNavDTO) {
         defaultValue={tabType}
         label="选择模板"
         onChange={(value: string) => {
+          console.log("value", value);
           handleChange({ tabType: value });
         }}
       />
